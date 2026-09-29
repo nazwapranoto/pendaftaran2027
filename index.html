@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran OKTAN ITB 2027</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --black: #000000;
+      --gray-100: #f5f5f5;
+      --gray-200: #e6e6e6;
+      --gray-500: #6f6f6f;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--black);
+      font-family: "Plus Jakarta Sans", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", Arial, sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.055em;
+      line-height: .98;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    :focus-visible {
+      outline: 3px solid var(--black);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    /* Navbar */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-top: 3px solid var(--black);
+      border-bottom: 2px solid var(--black);
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px 22px;
+    }
+
+    .nav-brand {
+      font-size: clamp(1.25rem, 3vw, 1.6rem);
+      font-weight: 700;
+      letter-spacing: -0.06em;
+    }
+
+    .nav-cta {
+      padding: 11px 18px;
+      border: 2px solid var(--black);
+      background: var(--black);
+      color: var(--white);
+      font-weight: 700;
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--white);
+      color: var(--black);
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    .hero {
+      display: block;
+      padding: 72px 0 54px;
+    }
+
+    .hero h1 {
+      max-width: 11ch;
+      font-family: "DM Sans", Arial, sans-serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 500;
+      font-style: normal;
+      letter-spacing: -0.055em;
+      line-height: .98;
+    }
+
+    .hero h1 em {
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      font-style: normal;
+      letter-spacing: inherit;
+    }
+
+    .formula {
+      max-width: 47ch;
+      margin: 22px 0 0;
+      color: var(--black);
+      font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.16;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-description {
+      max-width: 54ch;
+      margin: 18px 0 0;
+      color: var(--gray-500);
+      font-size: 1.05rem;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border: 2px solid var(--black);
+      font-weight: 700;
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--black); color: var(--white); }
+    .btn-primary:hover { background: var(--white); color: var(--black); }
+    .btn-ghost { background: var(--white); }
+    .btn-ghost:hover { background: var(--black); color: var(--white); }
+
+    /* General section */
+    section { padding: 58px 0; }
+
+    .section-kicker {
+      margin: 0 0 8px;
+      color: var(--gray-500);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .section-head { margin-bottom: 28px; }
+    .section-head h2 { max-width: 19ch; font-size: clamp(2rem, 4vw, 3rem); }
+    .kicker { max-width: 54ch; margin: 12px 0 0; color: var(--gray-500); }
+
+    /* About */
+    .about {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      align-items: start;
+      gap: 28px;
+    }
+
+    .about-note {
+      min-height: auto;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: var(--black);
+      transform: none;
+    }
+
+    .about-note .section-kicker { color: var(--gray-500); margin: 0; }
+
+    .about-copy p {
+      margin: 0 0 18px;
+      color: var(--gray-500);
+      font-size: clamp(1rem, 1.5vw, 1.05rem);
+      line-height: 1.65;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .about-copy strong {
+      color: var(--black);
+    }
+
+    @media (max-width: 520px) {
+      .about-copy p {
+        font-size: .98rem;
+        line-height: 1.6;
+        text-align: left;
+      }
+    }
+
+    /* Competition categories */
+    .cat-grid, .daftar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .cat-card, .daftar-card, .contact-card, .t-row, .terms-box, details {
+      border: 2px solid var(--black);
+      background: var(--white);
+    }
+
+    .cat-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 24px;
+      transition: transform .18s ease;
+    }
+
+    .cat-card:nth-child(2) { transform: translateY(12px); }
+    .cat-card:nth-child(3) { transform: translateY(-6px); }
+    .cat-card:hover { transform: translate(-2px, -2px); }
+    .cat-card:nth-child(2):hover { transform: translate(-2px, 10px); }
+    .cat-card:nth-child(3):hover { transform: translate(-2px, -8px); }
+
+    .tag-badge {
+      width: fit-content;
+      padding: 4px 8px;
+      border: 1.5px solid var(--black);
+      background: var(--gray-100);
+      font-size: .75rem;
+      font-weight: 700;
+    }
+
+    .cat-card h3 { margin: 12px 0; font-size: 2rem; }
+    .cat-card p { margin: 0 0 14px; color: var(--gray-500); }
+
+    .fmt {
+      margin-bottom: 18px;
+      padding: 11px 12px;
+      background: var(--black);
+      color: var(--white);
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .cat-card .btn { margin-top: auto; }
+
+    /* Timeline (Original Style) */
+    .t-list { display: flex; flex-direction: column; gap: 10px; }
+    .t-row { display: grid; grid-template-columns: 170px 1fr; align-items: center; padding: 16px 18px; }
+    .t-date { font-weight: 700; }
+    .t-body h3 { font-size: 1.15rem; }
+
+    .timeline-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 28px 0 12px;
+    }
+
+    .timeline-title:first-child {
+      margin-top: 0;
+    }
+
+    /* Requirements */
+    .terms-box { padding: 8px 28px 8px 36px; }
+    .terms { margin: 0; padding-left: 22px; }
+    .terms li { padding: 10px 0; color: var(--gray-500); }
+    .terms li::marker { color: var(--black); font-weight: 800; }
+
+    /* FAQ */
+    .faq-sub {
+      margin: 28px 0 12px;
+      color: var(--gray-500);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    details { padding: 14px 16px; margin-bottom: 10px; }
+    details[open] { background: var(--gray-100); }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      font-size: 1.02rem;
+      font-weight: 700;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    .arrow { color: var(--black); }
+    details p { margin: 10px 0 0; color: var(--gray-500); }
+
+    /* Registration */
+    .daftar-card { display: flex; flex-direction: column; padding: 24px; }
+    .daftar-card h3 { margin: 12px 0 8px; font-size: 1.8rem; }
+    .daftar-card p { flex-grow: 1; margin: 0 0 22px; color: var(--gray-500); }
+
+    .price {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 2px 8px;
+      background: var(--black);
+      color: var(--white);
+      font-weight: 800;
+    }
+
+    /* Contact */
+    .contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .contact-card { padding: 22px; }
+    .contact-card h3 { font-size: 1.55rem; }
+    .contact-card p { margin: 8px 0 18px; color: var(--gray-500); }
+
+    .btn-group-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* All boxed elements are flat: no shadows */
+    .nav-cta, .btn, .cat-card, .daftar-card, .contact-card, .t-row, .terms-box, details {
+      box-shadow: none !important;
+    }
+
+    /* Modal Popup Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--white);
+      border: 2px solid var(--black);
+      padding: 32px 24px;
+      max-width: 460px;
+      width: 90%;
+      text-align: center;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .modal-content p {
+      color: var(--gray-500);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-actions .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .about, .cat-grid, .daftar-grid, .contact-row, .t-row { grid-template-columns: 1fr; }
+      .cat-card:nth-child(2), .cat-card:nth-child(3) { transform: none; }
+      .cat-card:nth-child(2):hover, .cat-card:nth-child(3):hover { transform: translateY(-2px); }
+    }
+
+    @media (max-width: 520px) {
+      .nav-inner { padding: 14px 16px; }
+      .wrap { padding: 0 16px; }
+      .nav-cta { padding: 10px 12px; font-size: .9rem; }
+      .hero { padding: 48px 0 36px; }
+      .hero h1 { font-size: 2.9rem; }
+      section { padding: 42px 0; }
+      .btn { width: 100%; }
+      .hero-actions { display: grid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">OKTAN ITB 2027</a>
+      <a class="nav-cta" href="#daftar">Daftar Sekarang</a>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Kompetisi Kimia Tingkat Nasional <em>2027</em></h1>
+        <p class="formula">The Molecular Spark: Chemical Innovation to Heal the Earth</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#daftar">Pilih kategori lomba</a>
+          <a class="btn btn-ghost" href="#faq">Baca FAQ dulu</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang">
+      <div class="about">
+        <div class="about-copy"><p><strong>OKTAN ITB</strong> adalah kompetisi kimia tahunan berskala nasional yang diselenggarakan oleh HMK 'AMISCA' ITB. Mengusung tema <em>"The Molecular Spark: Chemical Innovation to Heal the Earth".</em> Melalui tema ini, setiap peserta diibaratkan sebagai penyelam muda yang menjelajahi berbagai kedalaman ilmu kimia, mulai dari kesetimbangan larutan pada ISOTERM, pembentukan struktur pada CRYSTAL, hingga pengikatan senyawa kompleks pada CHELATION.</p></div>
+      </div>
+    </section>
+
+    <section id="kategori">
+      <div class="section-head"><h2>Kategori Lomba</h2></div>
+      <div class="cat-grid">
+        <article class="cat-card"><h3>Crystal</h3><span class="tag-badge">Tim (2 orang)</span><p>Olimpiade kimia tingkat nasional untuk siswa SMA/MA/SMK dan sederajat seluruh Indonesia.</p><div class="fmt">Penyisihan -> Perempat final -> Semifinal -> Final</div><p>Babak penyisihan dilakukan online, dikerjakan berdua, dan diawasi melalui Zoom. Babak perempat final, semifinal, dan final dilakukan secara offline di ITB.</p><a class="btn btn-ghost" href="#daftar">Ke pendaftaran</a></article>
+
+        <article class="cat-card"><h3>Isoterm</h3><span class="tag-badge">Tim (2–3 orang)</span><p>Kompetisi Karya Tulis Ilmiah (KTI) untuk mahasiswa aktif yang terdaftar dalam universitas di Indonesia.</p><div class="fmt">Seleksi abstrak -> Seleksi full paper -> Final</div><p>Seleksi abstrak dan full paper dilakukan online. Presentasi final berlangsung offline di ITB dengan mata acara berupa presentasi karya ilmiah dan pameran karya.</p><a class="btn btn-ghost" href="#daftar">Ke pendaftaran</a></article>
+
+        <article class="cat-card"><h3>Chelation</h3><span class="tag-badge">Tim (2–3 orang)</span><p>Kompetisi studi kasus untuk memecahkan masalah nyata melalui kolaborasi ilmu kimia dengan lintas disiplin.</p><div class="fmt">Seleksi abstrak -> Seleksi full paper -> Final</div><p>Seleksi abstrak dan full paper dilakukan online, sedangkan presentasi final berupa pitching dilakukan secara offline di ITB.</p><a class="btn btn-ghost" href="#daftar">Ke pendaftaran</a></article>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <div class="section-head"><h2>Timeline Kegiatan</h2></div>
+      
+      <!-- 1. Timeline Crystal -->
+      <h3 class="timeline-title">Crystal</h3>
+      <div class="t-list">
+        <div class="t-row"><div class="t-date">Oktober 2027</div><div class="t-body"><h3>Pendaftaran Gelombang 1 Crystal</h3></div></div>
+        <div class="t-row"><div class="t-date">November 2027</div><div class="t-body"><h3>Pendaftaran Gelombang 2 Crystal</h3></div></div>
+        <div class="t-row"><div class="t-date">Desember 2027</div><div class="t-body"><h3>Pendaftaran Gelombang 3 Crystal</h3></div></div>
+      </div>
+
+      <!-- 2. Timeline Isoterm -->
+      <h3 class="timeline-title">Isoterm</h3>
+      <div class="t-list">
+        <div class="t-row"><div class="t-date">2026</div><div class="t-body"><h3>Pendaftaran dan Pengumpulan Abstrak Isoterm</h3></div></div>
+        <div class="t-row"><div class="t-date">2026</div><div class="t-body"><h3>Pengumpulan Full Paper Isoterm</h3></div></div>
+      </div>
+
+      <!-- 3. Timeline Chelation -->
+      <h3 class="timeline-title">Chelation</h3>
+      <div class="t-list">
+        <div class="t-row"><div class="t-date">2026</div><div class="t-body"><h3>Pendaftaran Chelation</h3></div></div>
+        <div class="t-row"><div class="t-date">November 2026</div><div class="t-body"><h3>Case Study</h3></div></div>
+      </div>
+    </section>
+
+    <section id="syarat">
+      <div class="section-head"><h2>Syarat dan Ketentuan</h2></div>
+      <div class="terms-box"><ol class="terms"><li>Peserta merupakan siswa/i aktif SMA/MA/SMK sederajat untuk Crystal dan Chelation, serta mahasiswa aktif untuk Isoterm.</li><li>Kategori <strong>Crystal</strong> terdiri dari 2 orang dan wajib didampingi guru pembimbing dari sekolah asal. Kategori <strong>Isoterm</strong> dan <strong>Chelation</strong> terdiri dari 2–3 orang dari institusi yang sama.</li><li>Peserta melampirkan scan kartu pelajar atau surat keterangan aktif beserta pas foto terbaru saat pendaftaran.</li><li>Biaya pendaftaran per tim: <strong>Crystal Rp000.000</strong>, <strong>Isoterm Rp000.000</strong>, dan <strong>Chelation Rp000.000</strong>.</li></ol></div>
+    </section>
+
+    <section id="faq">
+      <div class="section-head"><p class="section-kicker">Yang sering ditanya</p><h2>FAQ</h2></div>
+      <p class="faq-sub">Umum</p>
+      <details open><summary>Bagaimana cara mendaftar?<span class="arrow">↓</span></summary><p>Klik tombol formulir pada kategori yang kamu pilih. Kamu akan diarahkan ke Google Form resmi panitia.</p></details>
+      <details><summary>Apakah boleh mengikuti lebih dari satu cabang lomba?<span class="arrow">↓</span></summary><p>Boleh, selama memenuhi ketentuan anggota tim serta melengkapi formulir dan pembayaran secara terpisah.</p></details>
+      <p class="faq-sub">Kategori Crystal</p>
+      <details><summary>Apakah lomba Crystal berbasis tim atau individu?<span class="arrow">↓</span></summary><p>Crystal merupakan olimpiade kimia berbasis tim. Seluruh babak, dari penyisihan hingga final, dikerjakan oleh tim dan bukan individu.</p></details>
+      <details><summary>Apakah boleh satu tim hanya terdiri dari satu orang alias individu?<span class="arrow">↓</span></summary><p>Boleh, tetapi kami sangat tidak merekomendasikannya. Baca kembali ketentuan tim dan penjelasan tiap babak pada guidebook. Jika tetap ingin hanya satu orang, panitia tidak menanggung kerugian yang diakibatkannya.</p></details>
+      <details><summary>Apakah babak penyisihan dilakukan secara daring?<span class="arrow">↓</span></summary><p>Ya. Penyisihan dilakukan secara online dan diawasi melalui Zoom.</p></details>
+      <details><summary>Apakah ada jumlah maksimal tim yang dikirimkan oleh tiap sekolah?<span class="arrow">↓</span></summary><p>Tidak ada. Kami tidak membatasi jumlah tim yang dikirimkan oleh tiap sekolah.</p></details>
+      <details><summary>Perangkat apa saja yang harus saya siapkan untuk babak penyisihan?<span class="arrow">↓</span></summary><p>Penyisihan dilakukan secara daring melalui platform website. Agar proses pengerjaan optimal, satu tim memerlukan dua laptop untuk mengerjakan soal dan dua ponsel untuk pengawasan Zoom. Website menggunakan sinkronisasi jawaban antaranggota tim sehingga keduanya dapat membagi pengerjaan dengan efisien.</p></details>
+      <details><summary>Apakah ada latihan soal tahun lalu?<span class="arrow">↓</span></summary><p>Tentunya ada. Seluruh keperluan peserta dapat diakses melalui link kit Crystal.</p></details>
+      <details><summary>Apakah sertifikat diberikan untuk seluruh peserta?<span class="arrow">↓</span></summary><p>Seluruh peserta memperoleh sertifikat berisi predikat sesuai babak terakhir yang diikuti. Panitia akan mengupayakan pengiriman sertifikat selesai sebelum penutupan pendaftaran SNBP.</p></details>
+      <details><summary>Apa peran guru pembimbing pada registrasi?<span class="arrow">↓</span></summary><p>Guru pembimbing menjadi wakil sekolah untuk memudahkan koordinasi peserta dengan sekolah, misalnya terkait pembiayaan atau keberangkatan ke Bandung.</p></details>
+      <details><summary>Apakah guru pembimbing wajib ada?<span class="arrow">↓</span></summary><p>Ya, wajib ada sebagai perwakilan sekolah peserta. Guru pembimbing harus berasal dari sekolah, tetapi tidak wajib mengampu mata pelajaran kimia dan berperan menemani peserta selama babak offline.</p></details>
+      <details><summary>Bagaimana jika guru pembimbing tidak dapat menemani babak offline?<span class="arrow">↓</span></summary><p>Dapat digantikan oleh orang tua peserta.</p></details>
+    </section>
+
+    <section id="daftar">
+      <div class="section-head"><h2>Pendaftaran OKTAN 2027</h2></div>
+      <div class="daftar-grid">
+        <article class="daftar-card"><h3>Crystal</h3><p>Olimpiade Kimia Tim (2 orang)<br><span class="price">Rp000.000 / tim</span></p><a class="btn btn-primary" href="https://forms.gle/GhL6aZaTicj8bGkq9" target="_blank" rel="noopener">Form Crystal</a></article>
+        <article class="daftar-card"><h3>Isoterm</h3><p>Karya Tulis Ilmiah Tim (2–3 orang)<br><span class="price">Rp000.000 / tim</span></p><a class="btn btn-primary" href="https://forms.gle/seMXitun8QcBDRtP8" target="_blank" rel="noopener">Form Isoterm</a></article>
+        <article class="daftar-card"><h3>Chelation</h3><p>Studi Kasus (2–3 orang)<br><span class="price">Rp000.000 / tim</span></p><a class="btn btn-primary" href="https://forms.gle/E3EASF9VErqm4Qkr5" target="_blank" rel="noopener">Form Chelation</a></article>
+      </div>
+      <div class="contact-row">
+        <div class="contact-card">
+          <h3>Butuh bantuan?</h3>
+          <p>Kendala formulir, pembayaran, atau pertanyaan seputar lomba? Hubungi panitia melalui WhatsApp.</p>
+          <a class="btn btn-ghost" href="#" id="contact-admin-btn">WhatsApp Admin</a>
+        </div>
+        <div class="contact-card">
+          <h3>Guidebook resmi</h3>
+          <p>Aturan teknis, format naskah, persyaratan, dan alur setiap babak tersedia di guidebook masing-masing cabang lomba.</p>
+          <div class="btn-group-vertical">
+            <a class="btn btn-ghost guide-link" href="#" data-lomba="Crystal">Unduh Guidebook Crystal</a>
+            <a class="btn btn-ghost guide-link" href="#" data-lomba="Isoterm">Unduh Guidebook Isoterm</a>
+            <a class="btn btn-ghost guide-link" href="#" data-lomba="Chelation">Unduh Guidebook Chelation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Popup Kontak Admin -->
+  <div class="modal-overlay" id="faq-modal">
+    <div class="modal-content">
+      <!-- Step 1: Warning FAQ -->
+      <div id="modal-step-1">
+        <h3>Sudah baca FAQ?</h3>
+        <p>Kebanyakan pertanyaan sudah terjawab di FAQ. Kalau sudah baca dan masih butuh bantuan, kami siap bantu via WhatsApp!</p>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="continue-to-admin-btn">Sudah, hubungi admin</button>
+          <a class="btn btn-ghost" href="#faq" id="goto-faq-btn">Belum, baca FAQ dulu</a>
+        </div>
+      </div>
+
+      <!-- Step 2: Pilih Admin WhatsApp -->
+      <div id="modal-step-2" style="display: none;">
+        <h3>Pilih Admin WhatsApp</h3>
+        <p>Silakan pilih admin sesuai dengan cabang lomba atau kebutuhan pertanyaan kamu:</p>
+        <div class="modal-actions">
+          <a class="btn btn-primary" href="https://wa.me/621370378502?text=Halo%20Admin,%20saya%20ingin%20bertanya%20mengenai%20lomba%20Crystal" target="_blank" rel="noopener">Admin Crystal (Lomba)</a>
+          <a class="btn btn-primary" href="https://wa.me/621370378502?text=Halo%20Admin,%20saya%20ingin%20bertanya%20mengenai%20lomba%20Isoterm" target="_blank" rel="noopener">Admin Isoterm (Lomba)</a>
+          <a class="btn btn-primary" href="https://wa.me/621370378502?text=Halo%20Admin,%20saya%20ingin%20bertanya%20mengenai%20lomba%20Chelation" target="_blank" rel="noopener">Admin Chelation (Lomba)</a>
+          <a class="btn btn-primary" href="https://wa.me/621370378502?text=Halo%20Admin,%20saya%20ingin%20bertanya%20mengenai%20administrasi%20dan%20pendaftaran" target="_blank" rel="noopener">Admin Administrasi & Pendaftaran</a>
+          <button class="btn btn-ghost" id="back-to-step-1-btn" style="margin-top: 6px;">Kembali</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Elements Modal
+    const contactBtn = document.getElementById('contact-admin-btn');
+    const modal = document.getElementById('faq-modal');
+    const gotoFaqBtn = document.getElementById('goto-faq-btn');
+    const continueBtn = document.getElementById('continue-to-admin-btn');
+    const backBtn = document.getElementById('back-to-step-1-btn');
+    const step1 = document.getElementById('modal-step-1');
+    const step2 = document.getElementById('modal-step-2');
+
+    // Buka Modal (mulai dari Step 1 Warning)
+    contactBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      step1.style.display = 'block';
+      step2.style.display = 'none';
+      modal.classList.add('active');
+    });
+
+    // Lanjut ke Step 2 (Pilih Admin WA)
+    continueBtn.addEventListener('click', function() {
+      step1.style.display = 'none';
+      step2.style.display = 'block';
+    });
+
+    // Kembali ke Step 1
+    backBtn.addEventListener('click', function() {
+      step2.style.display = 'none';
+      step1.style.display = 'block';
+    });
+
+    // Tutup Modal & Scroll ke FAQ
+    gotoFaqBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      modal.classList.remove('active');
+      document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Tutup modal jika klik luar kotak
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Handler Guidebook
+    const guideLinks = document.querySelectorAll('.guide-link');
+    guideLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const lomba = this.getAttribute('data-lomba');
+        alert('Link guidebook ' + lomba + ' belum tersedia. Silakan hubungi admin untuk informasi lebih lanjut.');
+      });
+    });
+  </script>
+</body>
+</html>
